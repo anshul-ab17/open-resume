@@ -19,7 +19,9 @@ export default function Home() {
       .catch((err) => console.error(err));
   }, []);
 
-  if (!resume) return <div style={{ padding: "40px" }}>Loading...</div>;
+  if (!resume) {
+    return <div style={{ padding: "40px" }}>Loading...</div>;
+  }
 
   return (
     <>
