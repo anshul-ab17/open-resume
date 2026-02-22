@@ -1,4 +1,5 @@
-export const runtime = 'edge';
+export const runtime = "edge"
+export const dynamic = "force-dynamic"
 
 import Navbar from "./components/Navbar"
 import AboutCard from "./components/AboutCard"
