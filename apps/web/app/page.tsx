@@ -44,13 +44,15 @@ export default async function Home() {
 
   return (
     <>
-      <Navbar />
-      <main className="pt-24 px-6 max-w-5xl mx-auto space-y-12">
-        <AboutCard resume={resume} />
-        <SkillsCard resume={resume} />
-        <ProjectsCard resume={resume} />
-      </main>
-      <ChatWidget resume={resume} />
+            <div style={{color: "white"}}>Edge Working Test</div>
+
+    {/* //   <Navbar />
+    //   <main className="pt-24 px-6 max-w-5xl mx-auto space-y-12">
+    //     <AboutCard resume={resume} />
+    //     <SkillsCard resume={resume} />
+    //     <ProjectsCard resume={resume} />
+    //   </main>
+    //   <ChatWidget resume={resume} /> */}
     </>
   )
 }
