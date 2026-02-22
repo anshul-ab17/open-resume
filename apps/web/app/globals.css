@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -19,6 +19,11 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
+  body {
+  background-color: #0f0f0f;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
 }
 
 * {
@@ -47,4 +52,20 @@ a {
   .imgDark {
     display: unset;
   }
+} */
+body {
+  background-color: #0f0f0f;
+  color: white;
+  font-family: Inter, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.section-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 24px;
 }

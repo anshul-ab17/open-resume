@@ -49,18 +49,31 @@ def get_resumes(db: Session = Depends(get_db)):
 
     return result
 
+import json
+from fastapi import HTTPException
+
 @router.put("/{resume_id}", response_model=ResumeResponse)
-def update_resume(resume_id: int, data: ResumeCreate, db: Session = Depends(get_db)):
+def update_resume(
+    resume_id: int,
+    data: ResumeCreate,
+    db: Session = Depends(get_db)
+):
     resume = db.query(Resume).filter(Resume.id == resume_id).first()
+
     if not resume:
         raise HTTPException(status_code=404, detail="Resume not found")
 
     resume.name = data.name
-    resume.content = data.content
+    resume.content = json.dumps(data.content)  # convert dict → string
+
     db.commit()
     db.refresh(resume)
-    return resume
 
+    return {
+        "id": resume.id,
+        "name": resume.name,
+        "content": data.content  # return dict, not string
+    }
 
 @router.delete("/{resume_id}")
 def delete_resume(resume_id: int, db: Session = Depends(get_db)):

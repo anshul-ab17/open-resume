@@ -2,8 +2,6 @@ from sqlalchemy import Column, Integer, String, Text, DateTime
 from datetime import datetime
 from src.database import Base
 
-
-
 class Resume(Base):
     __tablename__ = "resumes"
 

@@ -4,6 +4,8 @@ from src.database import SessionLocal
 from src.schemas import ChatRequest, ChatResponse, ChatHistoryResponse
 from src.models import ChatHistory
 from src.services.chat_service import process_chat
+from fastapi import Request
+from src.services.limiter import limiter
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
 
@@ -17,8 +19,13 @@ def get_db():
 
 
 @router.post("/", response_model=ChatResponse)
-async def chat(request: ChatRequest, db: Session = Depends(get_db)):
-    reply = await process_chat(db, request.message)
+@limiter.limit("5/minute")  # stricter limit for AI endpoint
+async def chat(
+    request: Request,
+    data: ChatRequest,
+    db: Session = Depends(get_db)
+):
+    reply = await process_chat(db, data.message)
     return ChatResponse(reply=reply)
 
 
