@@ -10,7 +10,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 async function getResume(): Promise<Resume | null> {
   try {
-    const res = await fetch(`${API_URL}/resume/`, {
+    const res = await fetch(`${API_URL}resume/`, {
       cache: "no-store",
     })
 

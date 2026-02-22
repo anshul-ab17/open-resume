@@ -8,7 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/resume/`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}resume/`)
       .then((res) => {
         console.log("API response:", res.data); 
         setResume(res.data[0]);  

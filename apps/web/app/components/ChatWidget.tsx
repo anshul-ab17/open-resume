@@ -24,7 +24,7 @@ export default function ChatWidget({ resume }: { resume: Resume }) {
     setMessage("")
 
     try {
-      const res = await axios.post(`${API_URL}/chat/`, {
+      const res = await axios.post(`${API_URL}chat/`, {
         message,
       })
 
