@@ -40,9 +40,12 @@ export default function ResumeCard({ resume }: ResumeCardProps) {
           </h3>
 
           <div className="mt-6 space-y-3 text-gray-300 text-base">
-            {resume.content.projects.map((p) => (
-              <div key={p} className="hover:text-orange-400 transition">
-                {p}
+           {resume.content.projects.map((p, index) => (
+              <div
+                key={`${p.name}-${index}`}
+                className="hover:text-orange-400 transition"
+              >
+                {p.name}
               </div>
             ))}
           </div>

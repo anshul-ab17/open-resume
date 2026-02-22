@@ -23,8 +23,8 @@ export default function ResumeSection({ resume }: { resume: Resume }) {
       <div className="section-card">
         <h3>Projects</h3>
         {resume.content.projects.map((project) => (
-          <div key={project} style={{ marginTop: "8px" }}>
-            {project}
+          <div key={project.name} style={{ marginTop: "8px" }}>
+            {project.name}
           </div>
         ))}
       </div>
@@ -33,7 +33,7 @@ export default function ResumeSection({ resume }: { resume: Resume }) {
         <h3>Education</h3>
         {resume.content.education.map((edu) => (
           <div key={edu.degree} style={{ marginTop: "8px" }}>
-            {edu.degree} — {edu.institution} ({edu.year})
+            {edu.degree} — {edu.institution} ({edu.duration})
           </div>
         ))}
       </div>
