@@ -10,8 +10,8 @@ export default function Home() {
     axios
       .get("http://localhost:8000/resume/")
       .then((res) => {
-        console.log("API response:", res.data); // debug
-        setResume(res.data[0]); // 🔥 THIS IS IMPORTANT
+        console.log("API response:", res.data); 
+        setResume(res.data[0]);  
       })
       .catch((err) => console.error(err));
   }, []);
