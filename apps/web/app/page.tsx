@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import Navbar from "./components/Navbar"
 import AboutCard from "./components/AboutCard"
 import SkillsCard from "./components/SkillsCard"
@@ -42,13 +44,11 @@ export default async function Home() {
   return (
     <>
       <Navbar />
-
       <main className="pt-24 px-6 max-w-5xl mx-auto space-y-12">
         <AboutCard resume={resume} />
         <SkillsCard resume={resume} />
         <ProjectsCard resume={resume} />
       </main>
-
       <ChatWidget resume={resume} />
     </>
   )
