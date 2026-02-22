@@ -1,18 +1,19 @@
-from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from slowapi.middleware import SlowAPIMiddleware
 from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
+from slowapi import _rate_limit_exceeded_handler
 
 from src.database import engine, Base
 from src.routers import chat, resume
 from src.services.limiter import limiter
 
+# Create tables automatically in Supabase
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="AI Portfolio API")
+app = FastAPI(title="Open Resume API")
 
-# CORS
+# CORS 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -21,20 +22,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Rate limiter
+# Rate Limiter
 app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 app.add_middleware(SlowAPIMiddleware)
 
-@app.exception_handler(RateLimitExceeded)
-def rate_limit_handler(request: Request, exc: RateLimitExceeded):
-    return JSONResponse(
-        status_code=429,
-        content={"detail": "Too many requests. Please slow down."},
-    )
-
+# Include routers
 app.include_router(chat.router)
 app.include_router(resume.router)
 
 @app.get("/")
-def health():
-    return {"status": "Backend running "}
+def root():
+    return {"status": "server Running"}

@@ -1,13 +1,15 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime
 from datetime import datetime
+from sqlalchemy.dialects.postgresql import JSONB
 from src.database import Base
+
 
 class Resume(Base):
     __tablename__ = "resumes"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
-    content = Column(Text, nullable=False)
+    content = Column(JSONB, nullable=False)
 
 
 class ChatHistory(Base):
